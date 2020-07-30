@@ -1,3 +1,8 @@
+# Fork info
+
+Added support for Zabbix 4.4 version. \
+Inspired by [@linwinfan](https://github.com/linwinfan/dbforbix4.2).
+
 # DBforBIX
 
 DBforBix is the DB monitoring tool for Zabbix. It works like an active Zabbix Proxy by getting configuration from Zabbix Server and sending results back.

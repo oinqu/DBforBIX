@@ -31,7 +31,7 @@ import com.smartmarmot.common.PersistentDB;
 import com.smartmarmot.common.StackSingletonPersistent;
 import com.smartmarmot.dbforbix.config.Config;
 import com.smartmarmot.dbforbix.config.ZabbixServer;
-import com.smartmarmot.dbforbix.zabbix.protocol.Sender32;
+import com.smartmarmot.dbforbix.zabbix.protocol.Sender44;
 import com.smartmarmot.dbforbix.zabbix.protocol.ISenderProtocol;
 
 /**
@@ -42,7 +42,7 @@ import com.smartmarmot.dbforbix.zabbix.protocol.ISenderProtocol;
 public class ZabbixSender extends Thread {
 
 	public enum PROTOCOL {
-		V14, V18, V32
+		V14, V18, V32, V42, V44
 	}
 
 	private static final Logger	LOG					= Logger.getLogger(ZabbixSender.class);
@@ -56,7 +56,7 @@ public class ZabbixSender extends Thread {
 		super("ZabbixSender");
 		switch (protVer) {
 			default:
-				protocol = new Sender32();
+				protocol = new Sender44();
 			break;
 		}
 		setDaemon(true);
@@ -144,6 +144,8 @@ public class ZabbixSender extends Thread {
 	}
 
 	public void addItem(ZabbixItem item) {
+
+		LOG.debug("host-"+item.getHost()+",key:"+item.getKey()+",itemid:"+item.getItemid());
 		if (items.size() < 1000)
 			items.offer(item);
 	}
